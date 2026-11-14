@@ -2,7 +2,7 @@ name: Publish DocuSleuth AI
 on:
   push:
     branches: [codex/github-pages]
-    paths: [dist/**, .github/workflows/pages.yml]
+    paths: ['dist/**', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
