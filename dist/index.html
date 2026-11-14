@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; img-src 'self' blob: data:; font-src 'self'; worker-src 'self'; connect-src 'self' blob:; object-src 'none'; base-uri 'none'; form-action 'self'">
+  <meta name="theme-color" content="#f5f7f2">
+  <meta name="description" content="DocuSleuth AI — проверка печатных эссе. OCR и анализ текста на английском, русском и казахском прямо в браузере.">
+  <title>DocuSleuth AI — Essay review studio</title>
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <svg class="symbols" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-scan" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3m13-5h3a2 2 0 0 1 2 2v3M3 16v3a2 2 0 0 0 2 2h3m13-5v3a2 2 0 0 1-2 2h-3M3 12h18M8 8h8m-8 8h6"/></symbol>
+    <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="i-external" viewBox="0 0 24 24"><path d="M6 18 18 6M8 6h10v10"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s7-3.6 7-10V5l-7-3-7 3v7c0 6.4 7 10 7 10Z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="i-edit" viewBox="0 0 24 24"><path d="M13.5 6.5 17.5 10.5M4 20l4.3-1 11-11a2.8 2.8 0 0 0-4-4l-11 11L4 20Z"/></symbol>
+    <symbol id="i-bars" viewBox="0 0 24 24"><path d="M4 4v16h16M8 16v-4m5 4V8m5 8V5"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 24 24"><path d="M13 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V10Zm0 0v7h7M8 14h8m-8 3h5"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18m0-18a15 15 0 0 0 0 18"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5m0-8v.1"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4 10-10"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12m-5-5 5 5 5-5M4 17v3h16v-3"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M5 9a8 8 0 1 1 0 7M5 4v5h5"/></symbol>
+    <symbol id="i-rotate" viewBox="0 0 24 24"><path d="M4 6v6h6m-6 0a8 8 0 1 1 3 6"/></symbol>
+    <symbol id="i-camera" viewBox="0 0 24 24"><path d="M8 5 6.5 8H4a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-2.5L16 5Z"/><circle cx="12" cy="13" r="3"/></symbol>
+  </svg>
+  <header class="topbar">
+    <div class="wrap top-inner">
+      <a class="brand" href="./" aria-label="DocuSleuth AI"><img src="./mark.svg" alt="" width="40" height="40"><span>DocuSleuth<span class="brand-ai"> AI</span><small data-t="brandSub">Лаборатория текста</small></span></a>
+      <div class="top-actions">
+        <button class="text-button method-open" type="button" data-open-method><svg class="ic"><use href="#i-info"/></svg><span data-t="method">О методе</span></button>
+        <div class="language"><svg class="ic"><use href="#i-globe"/></svg><select id="ui-language" aria-label="Язык интерфейса"><option value="ru">RU</option><option value="kk">KZ</option><option value="en">EN</option></select></div>
+      </div>
+    </div>
+  </header>
+  <main class="wrap">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span><span data-t="eyebrow">СТУДИЯ ПРОВЕРКИ ЭССЕ</span></div>
+        <h1 id="hero-title"><span data-t="hero1">От бумаги</span><br><em data-t="hero2">к анализу текста.</em></h1>
+        <p data-t="heroDesc">Распознайте текст со скана, исправьте ошибки и проверьте, какие фрагменты стоит перечитать.</p>
+        <div class="hero-foot"><span class="live-dot"></span><span data-t="local">Файлы остаются в браузере</span><span class="hero-sep"></span><span>EN / RU / KZ</span></div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="visual-label"><span class="crosshair">⊕</span> DOCUSLEUTH / FIELD KIT</div>
+        <div class="visual-id">FIG. 01 <span></span> OCR → NLP</div>
+        <div class="scan-grid"></div>
+        <div class="paper paper-back"></div>
+        <div class="paper paper-front"><div class="paper-fold"></div><div class="paper-type">RESEARCH NOTE <span>01</span></div><div class="paper-title">The reading room</div><div class="paper-rule"></div><div class="paper-lines"><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div></div>
+        <div class="scan-frame"><i></i><i></i><i></i><i></i><div class="laser"></div></div>
+        <div class="visual-chip chip-a"><span><svg class="ic"><use href="#i-scan"/></svg></span><div><strong>OPTICAL SCAN</strong><small>01 / TEXT EXTRACTION</small></div></div>
+        <div class="visual-chip chip-b"><span><svg class="ic"><use href="#i-bars"/></svg></span><div><strong>STYLE SIGNALS</strong><small>02 / PATTERN ANALYSIS</small></div></div>
+        <div class="visual-index">01 <i></i> 02 <i></i> 03</div>
+      </div>
+    </section>
+
+    <section class="studio" aria-label="Рабочая область" id="studio">
+      <nav class="steps" aria-label="Шаги">
+        <button type="button" data-step="1" aria-current="step"><span class="step-num">01</span><span data-t="step1">Загрузка</span></button><span class="step-line"></span>
+        <button type="button" data-step="2" disabled><span class="step-num">02</span><span data-t="step2">Сверка текста</span></button><span class="step-line"></span>
+        <button type="button" data-step="3" disabled><span class="step-num">03</span><span data-t="step3">Отчёт</span></button>
+      </nav>
+
+      <div class="studio-grid" id="upload-view">
+        <section class="panel upload-panel" aria-labelledby="upload-title">
+          <div class="panel-header"><div><span class="kicker" data-t="source">01 / ИСТОЧНИК</span><h2 id="upload-title" data-t="uploadTitle">Загрузите страницу</h2><p data-t="uploadDesc">Фото или скан печатного эссе.</p></div><span class="panel-icon"><svg class="ic"><use href="#i-doc"/></svg></span></div>
+          <div class="dropzone" id="dropzone">
+            <span class="upload-icon"><svg class="ic"><use href="#i-upload"/></svg></span>
+            <strong data-t="drop">Перетащите изображение сюда</strong>
+            <p data-t="formats">JPG или PNG · до 10 МБ · 1 страница</p>
+            <button type="button" id="browse" class="primary"><span data-t="browse">Выбрать файл</span><svg class="ic"><use href="#i-arrow"/></svg></button>
+            <button type="button" id="camera" class="secondary camera"><svg class="ic"><use href="#i-camera"/></svg><span data-t="camera">Сделать фото</span></button>
+          </div>
+          <input type="file" id="file" accept="image/jpeg,image/png,.jpg,.jpeg,.png" hidden>
+          <input type="file" id="photo" accept="image/jpeg,image/png" capture="environment" hidden>
+          <div id="upload-error" class="error" role="alert" hidden></div>
+          <div class="upload-actions">
+            <label class="select-label"><span data-t="docLang">Язык документа</span><select id="upload-lang"><option value="en">English</option><option value="ru">Русский</option><option value="kk">Қазақша</option></select></label>
+            <div class="alt-actions"><button type="button" class="text-button" id="paste"><svg class="ic"><use href="#i-edit"/></svg><span data-t="paste">Вставить текст</span></button><button type="button" class="text-button demo" id="sample"><span data-t="demo">Открыть пример</span><svg class="ic"><use href="#i-external"/></svg></button></div>
+          </div>
+        </section>
+        <aside class="aside-stack">
+          <section class="panel path-panel" aria-labelledby="path-title">
+            <span class="kicker" data-t="pathKicker">РАБОЧИЙ ПРОЦЕСС</span>
+            <h2 id="path-title" data-t="pathTitle">Как это работает</h2>
+            <ol class="path-list">
+              <li><span class="path-icon"><svg class="ic"><use href="#i-scan"/></svg></span><div><b data-t="path1">Распознайте скан</b><p data-t="path1d">Превратите печатный текст в редактируемый.</p></div><span class="path-index">01</span></li>
+              <li><span class="path-icon"><svg class="ic"><use href="#i-edit"/></svg></span><div><b data-t="path2">Сверьте текст</b><p data-t="path2d">Исправьте опечатки по оригиналу.</p></div><span class="path-index">02</span></li>
+              <li><span class="path-icon"><svg class="ic"><use href="#i-bars"/></svg></span><div><b data-t="path3">Изучите отчёт</b><p data-t="path3d">Посмотрите сигналы модели и скачайте PDF.</p></div><span class="path-index">03</span></li>
+            </ol>
+          </section>
+          <section class="notice"><svg class="ic"><use href="#i-shield"/></svg><div><strong data-t="noticeTitle">Только для ручной проверки</strong><p data-t="notice">Результат не доказывает использование ИИ и не должен служить основанием для санкций.</p></div></section>
+        </aside>
+      </div>
+
+      <section class="panel workspace" id="review-view" hidden aria-labelledby="review-title">
+        <div class="panel-header"><div><span class="kicker" data-t="reviewKicker">02 / СВЕРКА</span><h2 id="review-title" tabindex="-1" data-t="reviewTitle">Сверьте текст</h2><p data-t="reviewDesc">Исправьте ошибки распознавания перед анализом.</p></div><button type="button" class="secondary reset" data-reset><svg class="ic"><use href="#i-reset"/></svg><span data-t="newDoc">Новый документ</span></button></div>
+        <div class="review-grid" id="review-grid">
+          <div id="scan-side" class="scan-side" hidden>
+            <div class="section-label"><span data-t="original">ОРИГИНАЛ</span><button type="button" id="rotate" class="icon-button" aria-label="Повернуть скан"><svg class="ic"><use href="#i-rotate"/></svg></button></div>
+            <div class="scan-preview"><img id="preview-img" alt=""></div><p class="file-name" id="file-name"></p>
+          </div>
+          <div class="editor-side">
+            <div class="section-label"><label for="editor" data-t="transcript">ТЕКСТ ДЛЯ АНАЛИЗА</label><span id="word-count"></span></div>
+            <textarea id="editor" rows="14" spellcheck="false" aria-describedby="review-hint" placeholder="Вставьте текст эссе…"></textarea>
+            <p class="muted" id="review-hint" data-t="reviewHint">Для анализа нужно 200–2000 слов на одном языке.</p>
+          </div>
+        </div>
+        <div class="ocr-box" id="ocr-box" role="status" aria-live="polite" hidden><p id="ocr-label"></p><progress id="ocr-progress" value="0" max="100"></progress></div>
+        <div class="error" id="review-error" role="alert" hidden></div>
+        <div class="workspace-actions">
+          <label class="select-label"><span data-t="docLang">Язык документа</span><select id="review-lang"><option value="en">English</option><option value="ru">Русский</option><option value="kk">Қазақша</option></select></label>
+          <div class="review-buttons"><button type="button" id="recognize" class="secondary" hidden><svg class="ic"><use href="#i-scan"/></svg><span data-t="recognize">Распознать заново</span></button><button type="button" id="analyze" class="primary"><span data-t="analyze">Анализировать</span><svg class="ic"><use href="#i-arrow"/></svg></button></div>
+        </div>
+      </section>
+
+      <section class="panel workspace" id="report-view" hidden aria-labelledby="report-title">
+        <div class="panel-header"><div><span class="kicker" data-t="reportKicker">03 / РЕЗУЛЬТАТ</span><h2 id="report-title" tabindex="-1" data-t="reportTitle">Отчёт по тексту</h2><p id="report-meta"></p></div><button type="button" class="primary" id="download"><svg class="ic"><use href="#i-download"/></svg><span data-t="download">Скачать PDF</span></button></div>
+        <div class="notice report-notice"><svg class="ic"><use href="#i-shield"/></svg><div><strong data-t="noticeTitle">Только для ручной проверки</strong><p data-t="notice">Результат не доказывает использование ИИ и не должен служить основанием для санкций.</p></div></div>
+        <div class="report-grid"><div id="score-panel"></div><div id="details-panel"></div></div>
+        <div class="findings"><h3 data-t="passages">Текст и сигналы модели</h3><p class="muted" data-t="passagesDesc">Подсветка помогает выбрать, что перечитать. Она не определяет авторство отдельных предложений.</p><div id="segments"></div></div>
+        <div class="error" id="report-error" role="alert" hidden></div>
+        <div class="workspace-actions"><button type="button" class="secondary" id="edit-again"><svg class="ic"><use href="#i-edit"/></svg><span data-t="editAgain">Вернуться к тексту</span></button><button type="button" class="text-button" data-reset><svg class="ic"><use href="#i-reset"/></svg><span data-t="newDoc">Новый документ</span></button></div>
+      </section>
+    </section>
+    <footer class="footer"><span>DocuSleuth AI <b>·</b> Astana IT University <b>·</b> SE-2421</span><button type="button" class="text-button" data-open-method><span data-t="method">О методе</span><svg class="ic"><use href="#i-external"/></svg></button></footer>
+  </main>
+  <dialog id="method-dialog" aria-labelledby="method-title"><div class="dialog-head"><div><span class="kicker">DOCUSLEUTH / LAB NOTES</span><h2 id="method-title" data-t="method">О методе</h2></div><form method="dialog"><button type="submit" class="icon-button" aria-label="Закрыть">×</button></form></div><div id="method-content"></div><form method="dialog"><button type="submit" class="secondary" data-t="close">Закрыть</button></form></dialog>
+  <noscript>DocuSleuth AI requires JavaScript / Для работы нужен JavaScript / JavaScript қажет.</noscript>
+</body>
+</html>

@@ -1,0 +1,15 @@
+node_modules/
+.ml-deps/
+data/
+*.zip
+qa/scans/
+qa/screens/
+qa/zip-smoke/
+qa/*-parity.json
+qa/sample-report-*.pdf
+qa/brief-review.png
+__pycache__/
+experiments/
+github-release/
+qa/audit-*/
+
