@@ -1,0 +1,311 @@
+Summary,Work Type,Description,Story Points,Labels,Labels,Labels
+US01 a bounded review process,Story,"As an instructor, I want a bounded review process so that a detector score is not treated as proof of misconduct.
+
+Sprint 1 | MoSCoW: Must
+Tasks (8 h):
+- Define audience, exclusions and decision wording: 4 h (R1)
+- Prepare consent and evaluation protocol: 4 h (R4)
+
+Acceptance: Protocol identifies allowed use, consent, data retention and the human decision owner.
+Depends on: None
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/browser.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/ocr.mjs",3,academic-simulation,sprint-1,must
+US02 to select a document language and upload a scan,Story,"As an instructor, I want to select a document language and upload a scan so that I can start the correct workflow.
+
+Sprint 1 | MoSCoW: Must
+Tasks (10 h):
+- Review upload and language selection controls: 6 h (R1)
+- Test JPG/PNG, 10 MB and 40 MP limits: 4 h (R3)
+
+Acceptance: EN/RU/KZ options work. Invalid or oversized images show a recoverable error.
+Depends on: US01
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/browser.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/ocr.mjs",3,academic-simulation,sprint-1,must
+US03 printed text recognized in its original language,Story,"As an instructor, I want printed text recognized in its original language so that I can review a scan without retyping it.
+
+Sprint 1 | MoSCoW: Must
+Tasks (10 h):
+- Verify Tesseract workers and eng/rus/kaz assets: 6 h (R1)
+- Measure character error on ten controlled scans: 4 h (R3)
+
+Acceptance: All three languages return editable text. Record per-scan errors and fixture limitations.
+Depends on: US02
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/browser.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/ocr.mjs",5,academic-simulation,sprint-1,must
+US04 consistent text validation,Story,"As a reviewer, I want consistent text validation so that unsupported inputs do not receive misleading model results.
+
+Sprint 1 | MoSCoW: Must
+Tasks (8 h):
+- Audit script normalization and language checks: 4 h (R2)
+- Test 200–2000 words and 100000-character limit: 4 h (R3)
+
+Acceptance: Boundary tests pass. Mixed-script and wrong-language cases have explicit handling.
+Depends on: US02
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/browser.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/ocr.mjs",3,academic-simulation,sprint-1,must
+US05 to edit OCR output and cancel a failed scan,Story,"As an instructor, I want to edit OCR output and cancel a failed scan so that I can recover without losing control.
+
+Sprint 1 | MoSCoW: Must
+Tasks (8 h):
+- Run edit, rotate, retry and cancellation scenarios: 4 h (R1)
+- Record defects and verify text-change invalidation: 4 h (R3)
+
+Acceptance: An edit invalidates the old report. Cancel and retry do not leave the interface blocked.
+Depends on: US03, US04
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done. Carried from Sprint 1 to Sprint 2.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/browser.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/ocr.mjs",3,academic-simulation,sprint-1,must
+US06 repeatable Russian evaluation,Story,"As a researcher, I want repeatable Russian evaluation so that improvements on paraphrases can be checked.
+
+Sprint 2 | MoSCoW: Must
+Tasks (10 h):
+- Reproduce fixed model and threshold evaluation: 6 h (R2)
+- Compare generation, paraphrase and human groups: 4 h (R2)
+
+Acceptance: Report counts and misses per group, including the weak news-paraphrase slice.
+Depends on: US04
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",5,academic-simulation,sprint-2,must
+US07 the Kazakh evidence limits stated,Story,"As an instructor, I want the Kazakh evidence limits stated so that encyclopedia results are not mistaken for essay validation.
+
+Sprint 2 | MoSCoW: Must
+Tasks (10 h):
+- Audit AINA-KK labels, groups, lengths and licenses: 6 h (R2)
+- Specify independent human-essay collection criteria: 4 h (R4)
+
+Acceptance: Document missing human essays, short MH cases and permitted noncommercial use.
+Depends on: US01, US04
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",5,academic-simulation,sprint-2,must
+US08 browser results to match the validated model,Story,"As a user, I want browser results to match the validated model so that deployment does not change the decision.
+
+Sprint 2 | MoSCoW: Must
+Tasks (10 h):
+- Verify JSON weights and browser inference parity: 7 h (R2)
+- Exercise asynchronous loading and failure recovery: 3 h (R3)
+
+Acceptance: The 58-case parity check passes and model-loading failures remain recoverable.
+Depends on: US06, US07
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",5,academic-simulation,sprint-2,must
+US09 a clear index and uncertain state,Story,"As an instructor, I want a clear index and uncertain state so that I understand the limits of the output.
+
+Sprint 2 | MoSCoW: Must
+Tasks (8 h):
+- Review index wording and acceptance examples: 4 h (R1)
+- Check EN/RU/KZ interface meaning with reviewers: 4 h (R4)
+
+Acceptance: The interface says index, not AI share or authorship probability, and explains uncertainty.
+Depends on: US08
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",3,academic-simulation,sprint-2,must
+US10 fixed evaluation inputs,Story,"As a reviewer, I want fixed evaluation inputs so that model selection does not silently use the final test.
+
+Sprint 2 | MoSCoW: Must
+Tasks (10 h):
+- Audit normalized duplicates, groups and frozen hashes: 5 h (R2)
+- Publish metric definitions and unresolved overlap risks: 5 h (R2)
+
+Acceptance: Record frozen hashes, duplicate checks, reused legacy tests and CoAT grouping limits.
+Depends on: US06, US07
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",5,academic-simulation,sprint-2,must
+US11 a readable workflow,Story,"As an instructor using a laptop or phone, I want a readable workflow so that I can complete the same review on either screen.
+
+Sprint 3 | MoSCoW: Should
+Tasks (10 h):
+- Review responsive layout and keyboard interaction: 6 h (R1)
+- Test 320–1440 px layouts and focus recovery: 4 h (R3)
+
+Acceptance: No horizontal overflow in tested widths. Main actions are reachable by keyboard.
+Depends on: US05, US09
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/full-audit.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/report.mjs",3,academic-simulation,sprint-3,should
+US12 a PDF of the reviewed text and findings,Story,"As an instructor, I want a PDF of the reviewed text and findings so that I can retain an interpretable report.
+
+Sprint 3 | MoSCoW: Should
+Tasks (10 h):
+- Verify Unicode fonts, text and page layout: 6 h (R1)
+- Test EN/RU/KZ and a 2000-word export: 4 h (R3)
+
+Acceptance: PDF text is extractable and complete, with readable Cyrillic and Kazakh glyphs.
+Depends on: US08, US09
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/full-audit.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/report.mjs",5,academic-simulation,sprint-3,should
+US13 relevant text groups highlighted,Story,"As a reviewer, I want relevant text groups highlighted so that I can reread them without treating highlights as proof.
+
+Sprint 3 | MoSCoW: Should
+Tasks (8 h):
+- Inspect grouping and minimum fragment length: 5 h (R2)
+- Test edits, short tails and unsupported language cases: 3 h (R3)
+
+Acceptance: Highlight wording describes review guidance and never identifies a proven AI-written sentence.
+Depends on: US08, US09
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/full-audit.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/report.mjs",5,academic-simulation,sprint-3,should
+US14 observed user feedback,Story,"As the Product Owner, I want observed user feedback so that the next priorities reflect actual review difficulties.
+
+Sprint 3 | MoSCoW: Should
+Tasks (8 h):
+- Recruit and consent five adult volunteers: 3 h (R4)
+- Observe upload-to-PDF tasks and index interpretation: 5 h (R4)
+
+Acceptance: Target at least 4/5 independent completions. Report recruitment or comprehension failures honestly.
+Depends on: US11, US12, US13
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done. Carried from Sprint 3 to Sprint 4. Independent completion reached 4/5. Index comprehension reached 3/5.",8,academic-simulation,sprint-3,should
+US15 reproducible defects ranked after the review,Story,"As a team member, I want reproducible defects ranked after the review so that the next increment addresses the highest risk.
+
+Sprint 3 | MoSCoW: Must
+Tasks (10 h):
+- Triage pilot findings and regression defects: 4 h (R3)
+- Verify fixes and record Product Owner decisions: 6 h (R3,R5)
+
+Acceptance: Each blocking defect has a reproduction, owner and resolution or an explicit release restriction.
+Depends on: US14; lab review fallback
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.",3,academic-simulation,sprint-3,must
+US16 model versions and evaluation limits documented,Story,"As a future maintainer, I want model versions and evaluation limits documented so that later changes can be compared.
+
+Sprint 4 | MoSCoW: Must
+Tasks (8 h):
+- Write per-language model and data records: 5 h (R2)
+- Check metrics, denominators and known weak slices: 3 h (R2)
+
+Acceptance: State RU/KZ 2.0, EN 1.0, training counts and test limitations without a universal accuracy claim.
+Depends on: US10, US13
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/VALIDATION.md
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/qa/model-parity.mjs
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/dist/models/validation.json",3,academic-simulation,sprint-4,must
+US17 measured loading and processing behavior,Story,"As a user, I want measured loading and processing behavior so that I can prepare a reliable classroom demonstration.
+
+Sprint 4 | MoSCoW: Should
+Tasks (8 h):
+- Benchmark cold and warm runs on a named laptop: 4 h (R1,R3)
+- Investigate slow steps and record measured results: 4 h (R1)
+
+Acceptance: Publish device, browser, network, sample and p50/p95 timings. Label unmet targets.
+Depends on: US11, US12
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Returned to backlog. Five task hours remain.",5,academic-simulation,sprint-4,should
+US18 a stable HTTPS address,Story,"As an instructor, I want a stable HTTPS address so that I can open the demonstration from another computer.
+
+Sprint 4 | MoSCoW: Must
+Tasks (8 h):
+- Review Pages workflow, pinned actions and release SHA: 5 h (R5)
+- Run hosted smoke checks and a rollback rehearsal: 3 h (R3,R5)
+
+Acceptance: Public URL loads. EN/RU/KZ OCR, analysis and PDF pass. Previous release is recoverable.
+Depends on: US15, US16
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/.github/workflows/pages.yml
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/README.md",3,academic-simulation,sprint-4,must
+US19 concise instructions,Story,"As a first-time user, I want concise instructions so that I can review a document and interpret the result correctly.
+
+Sprint 4 | MoSCoW: Must
+Tasks (8 h):
+- Prepare guide, demonstration and limitation wording: 6 h (R1)
+- Check guide against acceptance scenarios: 2 h (R4)
+
+Acceptance: Guide explains language selection, limits, index, uncertainty and manual review.
+Depends on: US16, US17, US18
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done. Guide excludes speed claims because US17 is open.
+
+Product evidence at the published baseline:
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/.github/workflows/pages.yml
+https://github.com/Kerey404/docusleuth-ai/blob/3508a56484a5d34fa721ef8258800fcb42deccf9/README.md",3,academic-simulation,sprint-4,must
+US20 a traceable release checklist,Story,"As the course reviewer, I want a traceable release checklist so that delivered behavior can be compared with the plan.
+
+Sprint 4 | MoSCoW: Must
+Tasks (10 h):
+- Run regression and collect release evidence: 6 h (R3)
+- Audit links, licenses, open risks and handover items: 4 h (R5)
+
+Acceptance: No blocking workflow defect remains. Evidence links and deferred work are complete.
+Depends on: US18, US19
+Evidence: link the matching GitHub pull request or test record.
+
+Academic simulation outcome: Done.",5,academic-simulation,sprint-4,must
