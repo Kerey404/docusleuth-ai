@@ -1,0 +1,21 @@
+﻿Issue key,Summary,Issue Type,Status,Status category,Project key,Sprint,Custom field (Story point estimate),Labels,Description
+DS-5,US01 Bounded review process,Story,Готово,Done,DS,Sprint 1,3.0,Must,"Acceptance criteria: Permitted use, consent, retention and a human decision owner are defined and documented."
+DS-6,US02 Language selection and upload,Story,Готово,Done,DS,Sprint 1,3.0,Must,Acceptance criteria: User selects the language; JPG/PNG files up to 10 MB and 40 MP are accepted; other files are rejected with a clear message.
+DS-7,US03 OCR in the original language,Story,Готово,Done,DS,Sprint 1,5.0,Must,Acceptance criteria: OCR runs in the selected original language and reaches 99.5-100% character accuracy on ten synthetic scans.
+DS-8,US04 Text validation,Story,Готово,Done,DS,Sprint 1,3.0,Must,"Acceptance criteria: Text must be 200-2000 words and at most 100,000 characters; otherwise the user sees a clear error."
+DS-9,"US05 Edit OCR output, cancel and retry",Story,Готово,Done,DS,Sprint 2,3.0,Must,Acceptance criteria: User can edit OCR text and cancel and retry a scan; the Analyze button is enabled again after cancel/retry.
+DS-10,US06 Repeatable Russian evaluation,Story,Готово,Done,DS,Sprint 2,5.0,Must,Acceptance criteria: Russian evaluation can be rerun with fixed inputs and reproduces the recorded results.
+DS-11,US07 Kazakh evidence limits,Story,Готово,Done,DS,Sprint 2,5.0,Must,Acceptance criteria: Kazakh evaluation limits are documented and claims are restricted to what was tested.
+DS-12,US08 Browser and model parity,Story,Готово,Done,DS,Sprint 2,5.0,Must,Acceptance criteria: Browser and model results match on the 58 parity cases.
+DS-13,US09 Index and uncertain state,Story,Готово,Done,DS,Sprint 2,3.0,Must,Acceptance criteria: Index uses the 25 and 70 thresholds and shows an uncertain state; the number is not presented as an authorship probability.
+DS-14,US10 Fixed evaluation inputs,Story,Готово,Done,DS,Sprint 2,5.0,Must,"Acceptance criteria: Frozen splits and reused legacy tests are recorded, and topic-overlap risk is stated."
+DS-15,US11 Responsive workflow,Story,Готово,Done,DS,Sprint 3,3.0,Should,Acceptance criteria: Workflow is usable at screen widths from 320 to 1440 px.
+DS-16,US12 Unicode PDF report,Story,Готово,Done,DS,Sprint 3,5.0,Should,Acceptance criteria: PDF report contains extractable Cyrillic and Kazakh text.
+DS-17,US13 Highlighted passages,Story,Готово,Done,DS,Sprint 3,5.0,Should,"Acceptance criteria: Highlighted passages are worded as review guidance, never as a finding about a sentence."
+DS-18,US14 User pilot with five volunteers,Story,Готово,Done,DS,Sprint 4,8.0,Should,"Acceptance criteria: Pilot sessions with five volunteers are held and results are reported honestly, including unmet targets."
+DS-19,US15 Ranked defects,Story,Готово,Done,DS,Sprint 3,3.0,Must,"Acceptance criteria: Pilot defects are ranked by risk, each with an owner."
+DS-20,US16 Model and data records,Story,Готово,Done,DS,Sprint 4,3.0,Must,Acceptance criteria: Model and data records are documented and linked from the repository.
+DS-21,US17 Measured loading and processing,Story,Готово,Done,DS,Sprint 4,5.0,Should,Acceptance criteria: Loading and processing times are measured and recorded.
+DS-22,US18 Stable HTTPS address,Story,Готово,Done,DS,Sprint 4,3.0,Must,Acceptance criteria: The app is reachable at a stable HTTPS address and passes three-language smoke checks.
+DS-23,US19 Short user guide,Story,Готово,Done,DS,Sprint 4,3.0,Must,"Acceptance criteria: Guide covers photo guidance and limits, labels timing targets as unmeasured and promises no speed."
+DS-24,US20 Release checklist,Story,Готово,Done,DS,Sprint 4,5.0,Must,"Acceptance criteria: Release checklist is completed, including smoke checks and a rollback rehearsal."

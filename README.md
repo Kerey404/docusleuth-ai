@@ -51,10 +51,22 @@ The Agile report models four two-week sprints as an **academic execution simulat
 | [Evidence index](docs/final-project/README.md) | Story IDs mapped to pinned source, checks and validation records |
 | [Four-sprint record](docs/final-project/SPRINTS.md) | 20 stories with MoSCoW, story points, carry-over, capacity and outcomes |
 | [Daily burn-down data](docs/final-project/burndown.csv) | Remaining task hours at checkpoints 0–10 for all four sprints |
-| [Jira import](docs/final-project/jira-backlog.csv) | 20 stories, acceptance criteria, 83 story points and Sprint/MoSCoW labels |
+| [Jira evidence](docs/jira/) | Backlog export, Sprint view and story screenshot |
 | [Open performance task](https://github.com/Kerey404/docusleuth-ai/issues/2) | US17 follow-up for device-specific cold/warm timing measurements |
 
-The simulation completes **78 of 83 unique story points** and leaves US17 open. Jira setup and import are pending. Sprint labels in the CSV support assignment after the four Scrum sprints are created.
+The simulation completes **78 of 83 unique story points** and leaves US17 open.
+
+## Project management
+
+The backlog is managed in the Jira Scrum project **DS**. [Jira board](https://docusleuth-ai.atlassian.net/jira/software/projects/DS/boards/2/backlog)
+
+- 20 user stories (US01–US20, DS-5 to DS-24) totaling 83 story points.
+- Four Sprints from 16 November 2026 to 10 January 2027.
+- Workflow stages are To Do, In Progress, Review and Done.
+- Every story has acceptance criteria, story points, a Sprint and a MoSCoW label.
+- With the GitHub integration connected, Jira uses the issue key in branch names, commit messages and pull request titles to populate the story's Development panel. [DS-9 story](https://docusleuth-ai.atlassian.net/browse/DS-9) · [DS-9 example commit](https://github.com/Kerey404/docusleuth-ai/commit/eff3408ebfc333b31f16f30ff76afd1a8ad05ca2)
+
+The export and screenshots of the Sprints and story DS-13 are in [`docs/jira/`](docs/jira/). The report's Sprint execution data come from the academic simulation. The Jira board records the planned backlog and its links to the code.
 
 ## Run locally
 
@@ -78,7 +90,8 @@ The checked-in `dist/` directory contains the application, model weights, fonts,
 | `dist/report.mjs` | PDF generation and Unicode font support |
 | `scripts/` | Data preparation, model training, evaluation and export |
 | `qa/` | Browser, model, PDF and server verification scripts |
-| `docs/final-project/` | Academic project evidence and Jira import |
+| `docs/final-project/` | Academic project evidence and simulated Sprint execution |
+| `docs/jira/` | Jira export, screenshots and issue-to-code traceability |
 | `.github/workflows/pages.yml` | GitHub Pages deployment of `dist/` |
 
 Training runs locally in Python. Exported JSON coefficients, vocabularies and trees support JavaScript inference. The recorded evaluation includes a 58-case Python/browser parity check and ten synthetic OCR scans with 99.5–100% character accuracy. Reproducing the training audits requires the documented datasets, Python dependencies and local evaluation fixtures, which are outside the public application package. [Reproduction details](VALIDATION.md)

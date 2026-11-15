@@ -16,7 +16,7 @@ The 94 committed SP include 11 SP selected again after carry-over. Unique scope 
 
 ### The 20 stories
 
-Each outcome below is the final state in the simulation. The initial Sprint column also matches the labels in the [Jira import](jira-backlog.csv).
+Each outcome below is the final state in the simulation. The initial Sprint column matches the labels in the [original import template](jira-backlog.csv). The [Jira export](../jira/backlog-export.csv) shows the allocation after moving US05 and US14.
 
 | ID | Story | SP | MoSCoW | Initial Sprint | Simulated outcome |
 | --- | --- | ---: | --- | ---: | --- |
@@ -101,4 +101,4 @@ Future planning uses the four-Sprint mean of 19.5 SP alongside actual availabili
 - Complete named-device loading and processing benchmarks, including cold/warm runs and p50/p95. [US17](https://github.com/Kerey404/docusleuth-ai/issues/2)
 - Obtain permitted independent Kazakh student essays and long paraphrases for evaluation. [Model limitations](../../VALIDATION.md)
 - Run real user-comprehension sessions and classroom-photo checks before broader classroom adoption.
-- Create the Jira Scrum space, import the prepared stories and add actual account assignments and issue links. [Import package and field mapping](README.md#jira-import-status)
+- Maintain issue-to-code links on [Jira project DS](../jira/) as follow-up work proceeds.
