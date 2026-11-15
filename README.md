@@ -1,28 +1,90 @@
 # DocuSleuth AI
 
-Рабочее приложение для демонстрации проекта SE-2421, Astana IT University: скан печатного эссе → распознавание → сверка текста → анализ → PDF. Английский, русский и казахский поддерживаются в интерфейсе, OCR и классификации.
+Review printed essays in **English, Russian and Kazakh**. Upload a scan, check the transcription, explore text signals and download a PDF report.
 
-**[Открыть сайт](https://kerey404.github.io/docusleuth-ai/)** — на ноутбуке достаточно Chrome или Edge и подключения к интернету. Установка не нужна. Исходники: [Kerey404/docusleuth-ai](https://github.com/Kerey404/docusleuth-ai). Настройка публикации описана в [GITHUB_PAGES.md](GITHUB_PAGES.md).
+**[Open the live demo](https://kerey404.github.io/docusleuth-ai/)** · [Final project evidence](docs/final-project/README.md) · [Model validation](VALIDATION.md) · [Инструкция на русском](docs/README.ru.md)
 
-Модели RU/KZ обновлены до 2.0: пропуски русских ИИ-перефразированных эссе на фиксированном тесте снизились с 51,2% до 17,4%, казахских ИИ-текстов других жанров — с 24,6% до 12,8%. Ложные флаги при этом выросли: до 2/85 русских эссе и 1/95 доступных казахских человеческих текстов. Полные сравнения, сложные случаи и ограничения — в [VALIDATION.md](VALIDATION.md).
+![DocuSleuth AI desktop upload screen](docs/assets/product-preview.png)
 
-## Запуск на Windows
+Built for the **SE-2421 Project Management team at Astana IT University**. The application combines multilingual OCR, browser inference and a documented review workflow. Uploaded essays are processed in the visitor's browser.
 
-1. Дважды щёлкните **Start-DocuSleuth.cmd**. На этом компьютере Node.js уже установлен. Откроется браузер.
-2. Выберите язык документа. Нажмите **Открыть пример**, чтобы проверить полный процесс на встроенном скане, или загрузите собственный JPG/PNG размером до 10 МБ. Можно также вставить текст.
-3. Сверьте распознанный текст (200–2000 слов, до 100 000 символов). При необходимости поверните изображение, повторите OCR или исправьте текст вручную. Более длинная вставка сохраняется полностью; приложение попросит сократить её перед анализом.
-4. Нажмите **Анализировать**, затем **Скачать PDF**. Чтобы проверить другой документ, нажмите **Новый документ**.
+## Try the complete workflow
 
-Оставляйте окно запуска открытым, пока работаете. Если браузер не открылся, перейдите по адресу из этого окна. Ручной запуск из папки: `node server.mjs`.
+1. Open the live demo in Chrome or Edge and select the document language.
+2. Load a built-in example or upload a clear JPG/PNG scan. Pasted text is also supported.
+3. Compare the transcription with the image and correct OCR errors.
+4. Run the analysis, read the model signal and review highlighted passages.
+5. Download the PDF and repeat with another language.
 
-В папке `dist/` уже есть все браузерные зависимости, шрифты, веса и тестовые сканы. Сборка, API-ключ и интернет не нужны для использования локальной копии. Сервер слушает только loopback и отдаёт только файлы `dist/`; загрузка изображения, OCR, анализ и PDF происходят в браузере. Текст не сохраняется в истории приложения. Постоянно хранится только выбранный язык интерфейса. Онлайн-версия опубликована на GitHub Pages.
+| Capability | Available in the prototype |
+| --- | --- |
+| Document languages | English, Russian and Kazakh across the interface, OCR and models |
+| Input | One JPG/PNG image up to 10 MB and 40 megapixels, or pasted text |
+| Analysis length | 200–2,000 words, up to 100,000 characters |
+| Review | Editable transcription, model index, uncertainty band and highlighted text groups |
+| Export | PDF with extractable text and Cyrillic/Kazakh glyph support |
+| Processing | OCR, scoring and PDF generation run in the browser |
 
-## Как читать отчёт
+The 0–100 index expresses a model signal. The interface includes an inconclusive range and supports manual review. Authorship decisions require independent evidence, and the output must never be used as the sole basis for a misconduct penalty. Clear printed scans are the intended input. Handwriting, mixed-language documents and real classroom photographs need further validation.
 
-- Индекс 0–100 — числовой сигнал модели, не вероятность авторства и не доля текста, написанного ИИ. Между порогами приложение выдаёт «Недостаточно оснований».
-- Подсветка — повод перечитать группу предложений. Она не указывает, кто написал предложение. Никакой результат не должен использоваться для санкций.
-- Профиль текста показывает длину и разброс длины предложений, разнообразие слов и, при работе со сканом, уверенность Tesseract. Уверенность Tesseract не равна измеренной точности OCR.
-- Лучше всего подходят чёткие сканы одной печатной страницы. Рукописи и смешанные языки вне проверенного сценария. Перевод, редактирование и перефразирование могут сильно менять сигнал.
+## Model results and limitations
 
-Воспроизводимость обучения и измерения: [VALIDATION.md](VALIDATION.md). Сравнение интерфейсов: [DESIGN.md](DESIGN.md).
+Russian and Kazakh models use version 2.0. English uses version 1.0. The training sets contain **5,290 RU**, **1,265 KZ** and **2,537 EN** texts. Recorded experiments compared 47 Russian and 33 Kazakh variants, including linear models, tree ensembles and combinations of their outputs. OCR uses pretrained Tesseract language packs.
 
+| Evaluation slice | Version 1.0 misses | Version 2.0 misses |
+| --- | ---: | ---: |
+| Russian paraphrased essays | 44 / 86 | 15 / 86 |
+| Russian paraphrased news | 40 / 47 | 23 / 47 |
+| Kazakh AI text from other genres | 46 / 187 | 24 / 187 |
+
+A miss includes an inconclusive result on a labelled AI example. Version 2.0 falsely flagged **2 of 85 human Russian essays** and **1 of 95 human Kazakh encyclopedic passages**. These small, domain-specific controls leave substantial uncertainty about classroom performance.
+
+The Kazakh human control set covers encyclopedic writing. Independent human Kazakh student essays remain a data gap. The 64 humanized-text test cases contain 80–199 words, below the application's 200-word minimum. Legacy tests were reused, and CoAT topic overlap remains unresolved. The project records these limits alongside its results. [Full validation and data sources](VALIDATION.md)
+
+## Final project materials
+
+The Agile report models four two-week sprints as an **academic execution simulation**. Its story outcomes and daily hours describe that exercise. Published code and validation records provide evidence for the working prototype.
+
+| Material | What it contains |
+| --- | --- |
+| [Live-site check — 15 November 2026](docs/final-project/DEMO_CHECK.md) | Passing EN/RU/KZ workflows, PDF extraction, mobile layout and captured screenshots |
+| [Evidence index](docs/final-project/README.md) | Story IDs mapped to pinned source, checks and validation records |
+| [Four-sprint record](docs/final-project/SPRINTS.md) | 20 stories with MoSCoW, story points, carry-over, capacity and outcomes |
+| [Daily burn-down data](docs/final-project/burndown.csv) | Remaining task hours at checkpoints 0–10 for all four sprints |
+| [Jira import](docs/final-project/jira-backlog.csv) | 20 stories, acceptance criteria, 83 story points and Sprint/MoSCoW labels |
+| [Open performance task](https://github.com/Kerey404/docusleuth-ai/issues/2) | US17 follow-up for device-specific cold/warm timing measurements |
+
+The simulation completes **78 of 83 unique story points** and leaves US17 open. Jira setup and import are pending. Sprint labels in the CSV support assignment after the four Scrum sprints are created.
+
+## Run locally
+
+With Node.js installed, run this command from the repository root.
+
+```sh
+node server.mjs
+```
+
+Open **http://127.0.0.1:4317** in Chrome or Edge and keep the terminal running. On Windows, **Start-DocuSleuth.cmd** starts the server and opens the browser. An alternative port can be supplied with `node server.mjs --port 4318`.
+
+The checked-in `dist/` directory contains the application, model weights, fonts, OCR language packs and example scans. It can run locally without a build step, API key or internet connection. The local server binds to `127.0.0.1` and serves `dist/`. The application retains the selected interface language and processes the current document in browser memory. GitHub Pages serves the online application's assets over the network.
+
+## How the application is organized
+
+| Location | Purpose |
+| --- | --- |
+| `dist/app.mjs`, `dist/styles.css`, `dist/strings.mjs` | Review workflow, responsive interface and translations |
+| `dist/ocr.mjs`, `dist/vendor/` | Tesseract OCR and bundled browser dependencies |
+| `dist/model.mjs`, `dist/features-v2.mjs`, `dist/models/` | Feature extraction, model inference and exported weights |
+| `dist/report.mjs` | PDF generation and Unicode font support |
+| `scripts/` | Data preparation, model training, evaluation and export |
+| `qa/` | Browser, model, PDF and server verification scripts |
+| `docs/final-project/` | Academic project evidence and Jira import |
+| `.github/workflows/pages.yml` | GitHub Pages deployment of `dist/` |
+
+Training runs locally in Python. Exported JSON coefficients, vocabularies and trees support JavaScript inference. The recorded evaluation includes a 58-case Python/browser parity check and ten synthetic OCR scans with 99.5–100% character accuracy. Reproducing the training audits requires the documented datasets, Python dependencies and local evaluation fixtures, which are outside the public application package. [Reproduction details](VALIDATION.md)
+
+Deployment uses the `codex/github-pages` branch and GitHub Actions. [Deployment guide](GITHUB_PAGES.md)
+
+## Data and third-party notices
+
+The Kazakh model weights are intended for educational, noncommercial use. Dataset permissions and restrictions are recorded with the validation sources. Bundled library and font notices are available in [`dist/vendor/licenses/`](dist/vendor/licenses/). [Model and data conditions](VALIDATION.md#источники)
