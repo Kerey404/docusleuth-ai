@@ -18,7 +18,8 @@ The academic simulation covers 16 November 2026 to 10 January 2027. Its backlog 
 | [Observed live-site check](DEMO_CHECK.md) | EN/RU/KZ workflow results, PDF extraction, responsive checks and screenshots from 15 November 2026 |
 | [Sprint record](SPRINTS.md) | All 20 stories, MoSCoW priorities, estimates, outcomes and role handovers |
 | [Daily burn-down CSV](burndown.csv) | The 11 simulation checkpoints used by the report charts |
-| [Jira backlog CSV](jira-backlog.csv) | 20 importable stories with acceptance criteria, estimates, dependencies and labels |
+| [Jira project evidence](../jira/) | The live project's exported stories, estimates, Sprint assignments and screenshots |
+| [Original Jira import template](jira-backlog.csv) | Initial Sprint allocation and acceptance criteria for the 20 stories |
 | [Validation record](../../VALIDATION.md) | Training counts, test denominators, model comparisons and limitations |
 | [Published product baseline](https://github.com/Kerey404/docusleuth-ai/commit/3508a56484a5d34fa721ef8258800fcb42deccf9) | The exact repository revision used for the report's product evidence |
 | [US17 performance follow-up](https://github.com/Kerey404/docusleuth-ai/issues/2) | The open request for named-device cold/warm measurements and p50/p95 timings |
@@ -54,14 +55,8 @@ Each row of [burndown.csv](burndown.csv) is a working-day checkpoint. **Checkpoi
 
 These simulated task-hour balances exclude event and reserve hours. An unfinished story earns zero completed SP until its acceptance criteria and Definition of Done are met. The release burn-down uses unique remaining SP at Sprint-end checkpoints, giving **83 → 69 → 43 → 27 → 5**.
 
-## Jira import status
+## Jira board and Sprint data
 
-The CSV package is ready. A live Jira space and its issue keys are pending creation and import.
+The [Jira board](https://docusleuth-ai.atlassian.net/jira/software/projects/DS/boards/2/backlog) holds the 20 stories as DS-5 through DS-24. The [export and screenshots](../jira/) reflect the board snapshot and show the Sprint allocation after moving US05 to Sprint 2 and US14 to Sprint 4.
 
-Create a Scrum space, enable story point estimation and map the file's `Summary`, `Work Type`, `Description`, `Story Points` and all three `Labels` columns. The `sprint-1` through `sprint-4` labels identify the initial planned allocation. Create four Sprint objects and assign the matching items after import. Map the `Story` work type to the equivalent type available in the space.
-
-The CSV records simulation outcomes in descriptions. Jira applies its default initial status during import. Assign team members and create dependency links once their Jira accounts and issue keys are available. Keep the original US identifiers in each summary to preserve traceability. Use the recorded carry-over decisions when rehearsing the exercise.
-
-The report's historical chart is supported by the published simulation CSV. Jira's own burn-down will reflect the activity recorded in the newly created space.
-
-[Atlassian CSV import instructions](https://support.atlassian.com/jira-software-cloud/docs/import-data-to-a-software-project-using-a-csv-file/)
+The snapshot marks all 20 stories Done, including DS-21 (US17). The report's 78 completed SP and open US17 come from the simulation. The named-device benchmark remains tracked as an open [GitHub follow-up](https://github.com/Kerey404/docusleuth-ai/issues/2).
